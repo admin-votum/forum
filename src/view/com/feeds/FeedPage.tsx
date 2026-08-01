@@ -28,6 +28,7 @@ import {
 } from '#/state/queries/post-feed'
 import {truncateAndInvalidate} from '#/state/queries/util'
 import {useSession} from '#/state/session'
+import {UniverseNewsFeed} from '#/view/com/feeds/UniverseNewsFeed'
 import {PostFeed} from '#/view/com/posts/PostFeed'
 import {FAB} from '#/view/com/util/fab/FAB'
 import {type ListMethods} from '#/view/com/util/List'
@@ -144,25 +145,34 @@ export function FeedPage({
       dataSet={{nosnippet: isDiscoverFeed ? '' : undefined}}>
       <MainScrollProvider>
         <FeedFeedbackProvider value={feedFeedback}>
-          <PostFeed
-            testID={testID ? `${testID}-feed` : undefined}
-            enabled={isPageFocused || shouldPrefetch}
-            feed={feed}
-            feedParams={feedParams}
-            pollInterval={POLL_FREQ}
-            disablePoll={hasNew || !isPageFocused}
-            scrollElRef={scrollElRef}
-            onScrolledDownChange={setIsScrolledDown}
-            onHasNew={setHasNew}
-            renderEmptyState={renderEmptyState}
-            renderEndOfFeed={renderEndOfFeed}
-            headerOffset={headerOffset}
-            savedFeedConfig={savedFeedConfig}
-            isVideoFeed={isVideoFeed}
-          />
+          {isDiscoverFeed ? (
+            <UniverseNewsFeed
+              enabled={isPageFocused || shouldPrefetch}
+              headerOffset={headerOffset}
+              scrollElRef={scrollElRef}
+              onScrolledDownChange={setIsScrolledDown}
+            />
+          ) : (
+            <PostFeed
+              testID={testID ? `${testID}-feed` : undefined}
+              enabled={isPageFocused || shouldPrefetch}
+              feed={feed}
+              feedParams={feedParams}
+              pollInterval={POLL_FREQ}
+              disablePoll={hasNew || !isPageFocused}
+              scrollElRef={scrollElRef}
+              onScrolledDownChange={setIsScrolledDown}
+              onHasNew={setHasNew}
+              renderEmptyState={renderEmptyState}
+              renderEndOfFeed={renderEndOfFeed}
+              headerOffset={headerOffset}
+              savedFeedConfig={savedFeedConfig}
+              isVideoFeed={isVideoFeed}
+            />
+          )}
         </FeedFeedbackProvider>
       </MainScrollProvider>
-      {(isScrolledDown || hasNew) && (
+      {!isDiscoverFeed && (isScrolledDown || hasNew) && (
         <LoadLatestBtn
           onPress={onPressLoadLatest}
           label={_(msg`Load new posts`)}

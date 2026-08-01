@@ -28,6 +28,7 @@ import {
 } from '#/state/queries/post-feed'
 import {truncateAndInvalidate} from '#/state/queries/util'
 import {useSession} from '#/state/session'
+import {UniverseNewsFeed} from '#/view/com/feeds/UniverseNewsFeed'
 import {PostFeed} from '#/view/com/posts/PostFeed'
 import {FAB} from '#/view/com/util/fab/FAB'
 import {type ListMethods} from '#/view/com/util/List'
@@ -156,6 +157,7 @@ export function FeedPage({
             onHasNew={setHasNew}
             renderEmptyState={renderEmptyState}
             renderEndOfFeed={renderEndOfFeed}
+            ListHeaderComponent={isDiscoverFeed ? UniverseNewsFeed : undefined}
             headerOffset={headerOffset}
             savedFeedConfig={savedFeedConfig}
             isVideoFeed={isVideoFeed}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 136 31">
+  <path d="M8 6 L8 17 A10 10 0 0 0 28 17 L28 6" stroke="#302B3D" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="14" cy="15" r="1.8" fill="#FF9F1C"/>
+  <circle cx="24" cy="15" r="1.8" fill="#FF9F1C"/>
+  <text x="37" y="21" font-family="Georgia, Times New Roman, serif" font-size="20" fill="#302B3D">forum</text>
+</svg>
